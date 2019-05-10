@@ -1,0 +1,9 @@
+{
+  "name": "hucr",
+  "version": "1.0.0",
+  "description": "Home page of Hokkaido University Cetacean Research at Sapporo",
+  "main": "build/index.js",
+  "repository": "http://github.com/Kogia-sima/hucr",
+  "author": "Kogia-sima",
+  "license": "MIT"
+}

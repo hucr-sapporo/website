@@ -6,6 +6,13 @@
   "repository": "http://github.com/Kogia-sima/hucr",
   "author": "Kogia-sima",
   "license": "MIT",
+  "scripts": {
+    "serve": "node build/index.js serve",
+    "watch": "node build/index.js watch",
+    "build": "node build/index.js build",
+    "lint:js": "eslint --ext .js,.vue src",
+    "lint:css": "eslint --ext .js,.vue src"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
     "gsap": "^2.1.2",

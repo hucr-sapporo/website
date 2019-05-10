@@ -14,7 +14,10 @@
     "vue-router": "^3.0.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
+    "@babel/core": "^7.0.0-0",
+    "@babel/preset-env": "^7.4.4",
+    "@vue/component-compiler-utils": "^3.0.0",
+    "autoprefixer": "^9.5.1",
     "babel-eslint": "^10.0.1",
     "doiuse": "^4.2.0",
     "eslint": "^5.16.0",
@@ -24,6 +27,7 @@
     "open": "^6.2.0",
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-compress": "^1.0.9",
-    "rimraf": "2.6.3"
+    "rimraf": "2.6.3",
+    "vue-template-compiler": "^2.6.10"
   }
 }

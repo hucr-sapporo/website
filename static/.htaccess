@@ -1,0 +1,46 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+
+  # Default Charset
+  AddDefaultCharset utf-8
+
+  # gzip support
+  RewriteCond %{HTTP:Accept-Encoding} gzip
+  RewriteCond %{REQUEST_FILENAME} !\.gz$
+  RewriteCond %{REQUEST_FILENAME}\.gz -s
+  RewriteRule .+ %{REQUEST_URI}.gz
+  RewriteRule "\.css\.gz$" "-" [T=text/css,E=no-brotli,E=no-gzip]
+  RewriteRule "\.js\.gz$" "-" [T=application/javascript,E=no-brotli,E=no-gzip]
+  <FilesMatch "\.(css|html|js)\.gz$">
+    # Serve correct encoding type
+    Header set Content-Encoding gzip
+    # Force proxies to cache gzip & non-gzip files separately
+    Header append Vary Accept-Encoding
+  </FilesMatch>
+  <FilesMatch "\.js\.gz$">
+    Header set Content-Type application/javascript
+  </FilesMatch>
+
+  # Vue history mode
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^[^\.]+$ /index.html [L]
+
+  # Disable html, php cache
+  <Files ~ "\.(html|php)">
+    Header set Pragma no-cache
+    Header set Cache-Control no-cache
+  </Files>
+
+  # Image Cache
+  <Files ~ ".(gif|jpe?g|png|ico)$">
+    Header set Cache-Control "max-age=86400, public"
+  </Files>
+
+  # authorization support
+  RewriteEngine  On
+  RewriteCond     %{HTTP:Authorization} ^(.*)
+  RewriteRule     ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+</IfModule>

@@ -14,7 +14,6 @@
     "lint:css": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.8.1",
     "gsap": "^2.1.2",
     "normalize.css": "^8.0.1",
     "vue": "^2.6.10",

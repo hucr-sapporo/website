@@ -6,7 +6,6 @@
 
 <script>
 import 'normalize.css';
-import '@fortawesome/fontawesome-free/css/all.min.css'
 
 export default {
   name: 'App', // for devtool

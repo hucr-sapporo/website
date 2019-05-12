@@ -791,11 +791,6 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@fortawesome/fontawesome-free@^5.8.1":
-  version "5.8.2"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.8.2.tgz#fae4112c4fb47086f6ae167e32524b280000abd5"
-  integrity sha512-E4fDUF4fbu9AxKpaQQqCN3XBnNzb/5e0Gvd9OaQsYkK574LVI57v/EqqPfIm/mC7jYbxaPNrhvT5AF+Yzwyizg==
-
 "@gfx/zopfli@1.0.11":
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/@gfx/zopfli/-/zopfli-1.0.11.tgz#6ced06b4566a5feb0036fe6a1e0262ce6cb1d6c5"

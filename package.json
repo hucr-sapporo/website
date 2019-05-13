@@ -10,8 +10,7 @@
     "serve": "node build/index.js serve",
     "watch": "node build/index.js watch",
     "build": "node build/index.js build",
-    "lint:js": "eslint --ext .js,.vue src",
-    "lint:css": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
     "gsap": "^2.1.2",
@@ -36,6 +35,7 @@
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-compress": "^1.0.9",
     "rimraf": "2.6.3",
+    "sass": "^1.20.1",
     "vue-template-compiler": "^2.6.10"
   }
 }

@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'balloon',
+  name: 'balloon-info',
   props: {
     top: {
       type: Number,
@@ -39,7 +39,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .balloon {
   display: none;
   position: absolute;

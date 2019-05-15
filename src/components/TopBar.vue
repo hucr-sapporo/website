@@ -70,7 +70,6 @@ export default {
     padding: 0;
     font-size: 20px;
     line-height: 50px;
-    font-weight: normal;
 
     @media (max-width: 480px) {
       display: none;

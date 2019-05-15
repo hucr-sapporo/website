@@ -1,9 +1,13 @@
 const usageCache = [];
 
-module.exports = {
-  plugins: {
-    autoprefixer: {},
+let plugins = {
+  autoprefixer: {}
+}
+
+if (process.env.NODE_ENV === 'production') {
+  plugins = Object.assign({}, plugins, {
     doiuse: {
+      ignore: ['calc'],
       onFeatureUsage: function(usageInfo) {
         if (!usageCache.includes(usageInfo.message)) {
           console.log(`\rdoiuse warning: ${usageInfo.message} (${usageInfo.feature})`);
@@ -11,5 +15,7 @@ module.exports = {
         }
       }
     }
-  }
+  });
 }
+
+module.exports = { plugins }

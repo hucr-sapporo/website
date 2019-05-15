@@ -1,15 +1,18 @@
 <template>
-  <div class="balloon" :class="{'balloon_open': isActive}" @click="isActive = !isActive">
-    <div v-if="!isActive" class="close_text">
+  <div class="balloon" :class="{'balloon_open': displayText}" @click="balloonClick">
+    <div v-if="displayIcon" class="close_text">
       ?
     </div>
-    <div v-if="isActive" class="open_text">
+    <div v-if="displayText" class="open_text">
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
+import 'gsap/CSSPlugin';
+import {TweenLite, Power0, Power1, Power2, Power3} from 'gsap/TweenLite';
+
 export default {
   name: 'balloon-info',
   props: {
@@ -22,11 +25,21 @@ export default {
       type: Number,
       require: false,
       default: 0
+    },
+    width: {
+      type: Number,
+      require: false,
+      default: 300
+    },
+    height: {
+      type: Number,
+      require: false,
+      default: 200
     }
   },
   data() {
     return {
-      isActive: false,
+      displayIcon: true,
       displayText: false
     }
   },
@@ -35,6 +48,33 @@ export default {
     styles.top = (this.top - 60) + 'px';
     styles.left = (this.left + 10) + 'px';
     styles.display = 'block';
+  },
+  methods: {
+    balloonClick() {
+      if (this.displayIcon) {
+        this.displayIcon = false;
+        TweenLite.to(this.$el, 0.3, {
+          width: this.width,
+          height: this.height,
+          y: 30 - this.height,
+          ease: Power2.easeInOut,
+          onComplete: () => {
+            this.displayText = true;
+          }
+        });
+      } else if (this.displayText) {
+        this.displayText = false;
+        TweenLite.to(this.$el, 0.3, {
+          width: 30,
+          height: 30,
+          y: 0,
+          ease: Power2.easeInOut,
+          onComplete: () => {
+            this.displayIcon = true;
+          }
+        });
+      }
+    }
   }
 }
 </script>
@@ -43,17 +83,16 @@ export default {
 .balloon {
   display: none;
   position: absolute;
-  padding: 0px;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
   border-radius: 22px;
   text-align: center;
   color: #ffffff;
   font-size: 25px;
-  background-color: #555;
+  background-color: #444;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
 
   &::before {
     content: '';
@@ -63,7 +102,7 @@ export default {
     bottom: -8px;
     width: 0;
     height: 0;
-    border-right: 30px solid #555;
+    border-right: 30px solid #444;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
     transform: rotate(-45deg);
@@ -71,9 +110,7 @@ export default {
 }
 
 .balloon_open {
-  text-align: left;
   font-size: 15px;
-  width: 300px;
-  height: 200px;
+  text-align: left;
 }
 </style>

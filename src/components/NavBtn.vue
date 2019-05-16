@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.router-link-active {
+a {
   margin: 0.5em 0.8em;
   padding: 0.5em 1em;
   position: relative;

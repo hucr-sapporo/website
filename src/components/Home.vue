@@ -2,14 +2,10 @@
   <div id="home">
     <div class="top_image"></div>
     <div class="gradient_blur"></div>
-    <top-bar ref="topBar" transparent></top-bar>
     <section class="top_contents">
       <div class="animation_texts">
         <div ref="source_text" class="source_text">
-          Consider the subtleness of the sea;
-          how its most dreaded creatures glide under water,
-          unapparent for the most part, and treaturously
-          hidden beneath the loveliest tints of azure.
+          Consider the subtleness of the sea; how its most dreaded creatures glide under water, unapparent for the most part, and treacherously hidden beneath the loveliest tints of azure.
         </div>
         <div ref="translated_text" class="translated_text">
           「海の巧妙さを考えてみよ。その最も恐ろしい生き物は、水の中を滑り動き，大部分ははっきりと見ることが出来ず、紺青の明媚な色合いの下に裏切り者のように潜んでいる。」
@@ -19,8 +15,8 @@
         </div>
       </div>
       <div ref="navbtns" class="navbtns">
-        <nav-btn to="/" color="#fb3">活動内容を見る</nav-btn>
-        <nav-btn to="/" color="#fff" highlighted-color="#444">活動日程カレンダー</nav-btn>
+        <nav-btn to="/activity" color="#fb3">活動内容を見る</nav-btn>
+        <nav-btn to="/schedule" color="#fff" highlighted-color="#444">活動日程カレンダー</nav-btn>
       </div>
     </section>
   </div>
@@ -30,7 +26,6 @@
 import '/css/fontello.css';
 import 'gsap/CSSPlugin';
 import {TweenLite, Power0, Power1, Power2, Power3} from 'gsap/TweenLite';
-import TopBar from './TopBar.vue';
 import NavBtn from './NavBtn.vue';
 
 function animate(el, duration, props1, props2 = null) {
@@ -47,10 +42,12 @@ function animate(el, duration, props1, props2 = null) {
   }
 }
 
+var animation_started = false;
+
 export default {
   name: 'home',
   components: {
-    TopBar, NavBtn
+    NavBtn
   },
   data() {
     return {
@@ -58,15 +55,21 @@ export default {
     }
   },
   mounted() {
-    this.start_animation();
+    if (!animation_started) {
+      animation_started = true;
+      this.start_animation();
+    } else {
+      this.$refs.source_text.style.opacity = 1.0;
+      this.$refs.translated_text.style.opacity = 1.0;
+      this.$refs.reference.style.opacity = 1.0;
+      this.$refs.reference.style.transform = 'rotate(0deg)';
+    }
   },
   methods: {
     async start_animation() {
-      await animate(this.$refs.source_text, 1.0, {
-        y: 0,
+      /* await animate(this.$refs.source_text, 0, {
         opacity: 1.0,
-        delay: 1.0
-      });
+      }); */
 
       await this.translation_animation({ delay: 0.5 });
 
@@ -139,7 +142,7 @@ export default {
 
 .top_image {
   position: fixed;
-  background-image: url('/assets/IMG_0831_k2.jpg');
+  background-image: url('/assets/IMG_0831_k3.jpg');
   background-position: left bottom;
   background-size: cover;
   background-repeat: no-repeat;
@@ -192,6 +195,7 @@ export default {
     .source_text {
       font-style: italic;
       color: #99ffd3;
+      opacity: 1.0;
     }
 
     .translated_text {

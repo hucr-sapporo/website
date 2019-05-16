@@ -1,22 +1,25 @@
 <template>
-  <header id="top_bar" :class="{'color_bar': !transparent}">
-    <router-link to="/">
+  <header id="top_bar">
+    <div id="top_bar_background"></div>
+    <div id="top_bar_foreground">
       <div class="left_items">
-        <img class="logo" src="/assets/logo_32x32.png"/>
-        <h1>北大鯨類研究会札幌支部</h1>
+        <router-link to="/">
+          <img class="logo" src="/assets/logo_32x32.png"/>
+          <h1>北大鯨類研究会札幌支部</h1>
+        </router-link>
       </div>
-    </router-link>
-    <div class="right_items">
-      <nav class="nav_on_top">
-        <a>活動内容</a>
-        <a>今後の活動日程</a>
-        <a href="http://hucrsapporo.wp.xdomain.jp" class="external">ブログ</a>
-        <a>お問い合わせ</a>
-        <a href="/secure.php">会員限定ページ</a>
-      </nav>
-      <a href="https://twitter.com/cetorogyclubsap"><i class="icon-twitter"></i></a>
-      <a href="https://github.com/hucr-sapporo"><i class="icon-github-circled"></i></a>
-      <i class="sidebar_togglebtn icon-menu"></i>
+      <div class="right_items">
+        <nav class="nav_on_top">
+          <router-link to="/activity">活動内容</router-link>
+          <router-link to="/schedule">活動日程</router-link>
+          <a href="http://hucrsapporo.wp.xdomain.jp" class="external">ブログ</a>
+          <router-link to="/contact">お問い合わせ</router-link>
+          <a href="/secure.php">会員限定ページ</a>
+        </nav>
+        <a href="https://twitter.com/cetorogyclubsap"><i class="icon-twitter"></i></a>
+        <a href="https://github.com/hucr-sapporo"><i class="icon-github-circled"></i></a>
+        <i class="sidebar_togglebtn icon-menu"></i>
+      </div>
     </div>
   </header>
 </template>
@@ -26,19 +29,12 @@ import 'gsap/CSSPlugin';
 import {TweenLite, Power0, Power1, Power2, Power3} from 'gsap/TweenLite';
 
 export default {
-  name: 'top-bar',
-  props: {
-    transparent: {
-      type: Boolean,
-      required: false,
-      default: false
-    }
-  }
+  name: 'top-bar'
 }
 </script>
 
 <style lang="scss">
-#top_bar {
+#top_bar_foreground {
   position: relative;
   top: 0;
   height: 50px;
@@ -47,6 +43,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  z-index: 3;
 
   a {
     color: #fff;
@@ -114,7 +111,13 @@ export default {
   }
 }
 
-.color_bar {
+#top_bar_background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
   background-color: #000;
+  z-index: -1;
 }
 </style>

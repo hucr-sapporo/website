@@ -3,6 +3,7 @@ module.exports = {
     autoinstall: true,
     cache: true,
     entryFiles: [ './src/index.html' ],
+    experimentalScopeHoisting: false,
     logLevel: '3',
     sourceMaps: false,
     staticPath: [ 'static' ],
@@ -10,7 +11,6 @@ module.exports = {
     throwErrors: false,
   },
   serve: {
-    experimentalScopeHoisting: false,
     hmr: true,
     minify: false,
     open: 'firefox',
@@ -24,7 +24,6 @@ module.exports = {
     },
   },
   watch: {
-    experimentalScopeHoisting: false,
     hmr: false,
     minify: false,
     outDir: './dist/dev',
@@ -32,7 +31,6 @@ module.exports = {
     watch: true,
   },
   build: {
-    experimentalScopeHoisting: true,
     hmr: false,
     minify: true,
     outDir: './dist/prod',

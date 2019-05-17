@@ -13,6 +13,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "bootstrap-vue": "^2.0.0-rc.20",
     "gsap": "^2.1.2",
     "normalize.css": "^8.0.1",
     "vue": "^2.6.10",

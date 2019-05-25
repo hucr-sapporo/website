@@ -1,0 +1,28 @@
+User-agent: *
+Disallow: /test/
+
+User-agent: Baiduspider
+Crawl-delay: 5
+
+User-agent: BaiduMobaider
+Crawl-delay: 10
+
+User-agent: BaiduImagespider
+Crawl-delay: 10
+
+User-agent: psbot
+Disallow: /
+
+User-agent: BecomeBot
+Disallow: /
+
+User-agent: Teoma
+Disallow: /
+
+User-agent: Ask Jeeves
+Disallow: /
+
+User-agent: ListRan
+Disallow: /
+
+Sitemap: http://hucrsapporo.php.xdomain.jp/sitemap.xml

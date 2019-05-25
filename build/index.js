@@ -68,6 +68,7 @@ function main() {
   // additional plugins
   require('./copy_static_files')(bundler);
   require('./clean_dist')(bundler);
+  require('./sitemap')(bundler);
   // require('./assets_dist')(bundler);
   
   // assets
@@ -75,26 +76,11 @@ function main() {
 
   (async function() {
     if (parcel_option.hmr) {
-      // lazy load
-      const proxy = require('http-proxy-middleware');
-      const express = require('express');
-      const open = require('open');
-
-      const app = express();
-
-      // proxy settings
-      if (parcel_option.proxy) {
-        for (let pathname in parcel_option.proxy) {
-          app.use(pathname, proxy(parcel_option.proxy[pathname]));
-        }
-      }
-
-      app.use(bundler.middleware())
-      console.log(`server running on http:\/\/localhost:${parcel_option.port}\/`)
-      const server = await app.listen(parcel_option.port);
+      const server = await bundler.serve(parcel_option.port, false, null);
 
       // open browser
       if (server && parcel_option.open) {
+        const open = require('open');
         const url = `http:\/\/localhost:${parcel_option.port}`;
         try {
           await open(url);

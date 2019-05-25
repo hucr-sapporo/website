@@ -17,11 +17,6 @@ module.exports = {
     outDir: './dist/dev',
     port: 1234,
     production: false,
-    proxy: {
-      // '/api': {
-      //   target: 'http://localhost:8000'
-      // }
-    },
   },
   watch: {
     hmr: false,

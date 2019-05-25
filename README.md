@@ -6,7 +6,6 @@ URL: http://hucrsapporo.php.xdomain.jp/
 
 - Nodejs >= 10.15
 - PHP >= 7.0
-- pnpm >= 3.1
 
 ## Build
 
@@ -24,7 +23,7 @@ If you want to be a contributor, It is convenient to launch the development serv
 
 ```console
 $ cd <project root directory>
-$ pnpm install
+$ yarn install
 $ yarn run serve
 ```
 
@@ -33,7 +32,7 @@ Then the browser opens automarically.
 With the project rendered on the browser, HMR (Hot Module Replacement) should work and your changes will applieded to your browser soon.
 
 ```console
-$ npm run lint
+$ yarn run lint
 ```
 
 ## License

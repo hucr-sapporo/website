@@ -6,9 +6,6 @@
 </template>
 
 <script>
-import 'gsap/CSSPlugin';
-import {TweenLite, Power0, Power1, Power2, Power3} from 'gsap/TweenLite';
-
 export default {
   name: 'nav-btn',
   props: {
@@ -34,20 +31,11 @@ export default {
   },
   methods: {
     mouseOver() {
-      TweenLite.to(this.$refs.bgbar, 0.25, {
-        width: '105%'
-      });
-      TweenLite.to(this.$el, 0.25, {
-        color: this.highlightedColor
-      });
+      console.log('mouseover');
+      this.$el.style.color = this.highlightedColor;
     },
     mouseLeave() {
-      TweenLite.to(this.$refs.bgbar, 0.25, {
-        width: 0
-      });
-      TweenLite.to(this.$el, 0.25, {
-        color: this.color
-      });
+      this.$el.style.color = this.color;
     }
   }
 }
@@ -66,6 +54,11 @@ a {
   color: #fff;
   overflow: hidden;
   z-index: 1;
+  transition: color .25s linear;
+
+  @media (max-height: 600px) {
+    margin: 0.2em 0.8em;
+  }
 }
 
 .bgbar {
@@ -76,5 +69,10 @@ a {
   width: 0;
   background-color: #fff;
   z-index: -1;
+  transition: width .2s ease-out;
+}
+
+a:hover .bgbar {
+  width: 105%;
 }
 </style>

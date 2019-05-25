@@ -4,6 +4,7 @@ import Home from '/components/Home.vue'
 import Activity from '/components/Activity.vue'
 import Schedule from '/components/Schedule.vue'
 import Contact from '/components/Contact.vue'
+import PrivacyPolicy from '/components/PrivacyPolicy.vue'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/contact',
       name: 'contact',
       component: Contact
+    },
+    {
+      path: '/privacy-policy',
+      name: 'privacy-policy',
+      component: PrivacyPolicy
     }
   ]
 })

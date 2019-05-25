@@ -1,22 +1,24 @@
 <template>
   <div id="home">
-    <div class="top_image"></div>
     <div class="gradient_blur"></div>
-    <section class="top_contents">
-      <div class="animation_texts">
-        <div ref="source_text" class="source_text">
-          Consider the subtleness of the sea; how its most dreaded creatures glide under water, unapparent for the most part, and treacherously hidden beneath the loveliest tints of azure.
+    <div class="background_orca">
+    <section>
+      <div class="top_contents">
+        <div class="animation_texts">
+          <div ref="source_text" class="source_text">
+            Consider the subtleness of the sea; how its most dreaded creatures glide under water, unapparent for the most part, and treacherously hidden beneath the loveliest tints of azure.
+          </div>
+          <div ref="translated_text" class="translated_text">
+            「海の巧妙さを考えてみよ。その最も恐ろしい生き物は、水の中を滑り動き，大部分ははっきりと見ることが出来ず、紺青の明媚な色合いの下に裏切り者のように潜んでいる。」
+          </div>
+          <div ref="reference" class="reference">
+            Herman Melville (1851) 『白鯨』
+          </div>
         </div>
-        <div ref="translated_text" class="translated_text">
-          「海の巧妙さを考えてみよ。その最も恐ろしい生き物は、水の中を滑り動き，大部分ははっきりと見ることが出来ず、紺青の明媚な色合いの下に裏切り者のように潜んでいる。」
+        <div ref="navbtns" class="navbtns">
+          <nav-btn to="/activity" color="#fb3">活動内容を見る</nav-btn>
+          <nav-btn to="/schedule" color="#fff" highlighted-color="#444">活動日程カレンダー</nav-btn>
         </div>
-        <div ref="reference" class="reference">
-          Herman Melville (1851) 『白鯨』
-        </div>
-      </div>
-      <div ref="navbtns" class="navbtns">
-        <nav-btn to="/activity" color="#fb3">活動内容を見る</nav-btn>
-        <nav-btn to="/schedule" color="#fff" highlighted-color="#444">活動日程カレンダー</nav-btn>
       </div>
     </section>
   </div>
@@ -55,6 +57,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this);
     if (!animation_started) {
       animation_started = true;
       this.start_animation();
@@ -63,6 +66,7 @@ export default {
       this.$refs.translated_text.style.opacity = 1.0;
       this.$refs.reference.style.opacity = 1.0;
       this.$refs.reference.style.transform = 'rotate(0deg)';
+      this.$refs.navbtns.style.opacity = 1.0;
     }
   },
   methods: {
@@ -71,26 +75,22 @@ export default {
         opacity: 1.0,
       }); */
 
-      await this.translation_animation({ delay: 0.5 });
+      await this.translation_animation(this.$refs.translated_text, { delay: 1.0 });
 
-      await animate(this.$refs.reference, 0.5, {
-        opacity: 1.0,
-        rotation: 0,
-        delay: 0.5
-      });
+      await this.translation_animation(this.$refs.reference, { delay: 0.5 });
 
-      /* animate(this.$refs.navbtns, 0.3, {
+      animate(this.$refs.navbtns, 0.3, {
         y: 50,
         opacity: 0.0
       }, {
         y: 0,
         opacity: 1.0,
+        ease: Power1.easeOut,
         delay: 1.0
-      }); */
+      });
     },
-    translation_animation({ delay }) {
+    translation_animation(el, { delay }) {
       return new Promise((resolve) => {
-        const el = this.$refs.translated_text;
         const spaned_text = '<span>' + Array.from(el.innerText).join('</span><span>') + '</span>';
         el.innerHTML = spaned_text;
         const span_tags = el.children;
@@ -127,6 +127,7 @@ export default {
   a {
     text-decoration: none;
   }
+  z-index: 2;
 }
 
 .gradient_blur {
@@ -140,16 +141,28 @@ export default {
   /* doiuse-enable */
 }
 
-.top_image {
+section, .background_orca {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  position: relative;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.background_orca {
+  z-index: 2;
   position: fixed;
+  height: 100vh;
   background-image: url('/assets/IMG_0831_k3.jpg');
   background-position: left bottom;
   background-size: cover;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+  background-attachment: fixed;
 
   @media (max-width: 480px) {
     background-position: left -200px bottom;
@@ -158,14 +171,16 @@ export default {
 
 .top_contents {
   position: absolute;
-  overflow: hidden;
+  margin: auto;
+  padding: 0;
+  line-height: 1.2;
 
-  @media (max-width: 1180px) {
+  @media (max-width: 1080px) {
     width: 80%;
     left: 10%;
     top: 10%;
   }
-  @media (min-width: 1181px) {
+  @media (min-width: 1081px) {
     width: calc(450px + 25%);
     right: calc(20% - 150px);
     top: 20%;
@@ -180,6 +195,9 @@ export default {
     font-size: 25px;
   }
 
+  @media (max-height: 540px) {
+    font-size: 17px;
+  }
 
   .animation_texts {
     color: #fff;
@@ -206,8 +224,6 @@ export default {
 
     .reference {
       text-align: right;
-      transform: rotate(-10deg);
-      transform-origin: right center;
     }
   }
 }
@@ -216,6 +232,7 @@ export default {
   position: relative;
   width: 100%;
   text-align: center;
-  margin-top: 1.5em;
+  margin-top: 1em;
+  opacity: 0;
 }
 </style>

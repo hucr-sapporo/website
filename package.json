@@ -27,13 +27,15 @@
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/runtime": "^7.4.4",
+    "@parcel/logger": "^1.11.0",
     "@vue/component-compiler-utils": "^3.0.0",
     "autoprefixer": "^9.5.1",
     "babel-eslint": "^10.0.1",
+    "connect": "^3.7.0",
+    "cosmiconfig": "^5.2.0",
     "doiuse": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.2",
-    "express": "^4.16.4",
     "http-proxy-middleware": "^0.19.1",
     "open": "^6.2.0",
     "parcel-bundler": "^1.12.3",
@@ -41,6 +43,7 @@
     "regenerator-runtime": "^0.13.2",
     "rimraf": "2.6.3",
     "sass": "^1.20.1",
+    "sitemap": "^2.2.0",
     "vue-template-compiler": "^2.6.10"
   }
 }

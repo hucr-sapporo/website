@@ -39,4 +39,4 @@ $ yarn run lint
 
 MIT License
 
-2019 Ryohei Machida <machida_mn@comple.ist.hokudai.ac.jp>
+2019 Ryohei Machida <machida_mn@complex.ist.hokudai.ac.jp>
